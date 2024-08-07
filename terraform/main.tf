@@ -7,16 +7,16 @@ resource "aws_instance" "instance1" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "example-instance"
+    Name = "instance1-instance"
   }
 
   # Optionally, you can include more configuration like key pairs, security groups, etc.
 }
 
 output "instance_id" {
-  value = aws_instance.example.id
+  value = aws_instance.instance1.id
 }
 
 output "instance_public_ip" {
-  value = aws_instance.example.public_ip
+  value = aws_instance.instance1.public_ip
 }
