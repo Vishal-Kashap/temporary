@@ -26,4 +26,4 @@ jobs:
         run: |
           git config --global user.email "vishu213vs@gmail.com"
           git config --global user.name "Vishal"
-          git diff --quiet || (git add -A && git commit -m "Apply terraform fmt" && git push)
+          git diff --quiet || (git add -A && git commit -m "Apply terraform fmt" && git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/Vishal-Kashap/temporary.git)
