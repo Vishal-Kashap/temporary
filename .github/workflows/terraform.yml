@@ -9,27 +9,36 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Terraform Fmt
+        working-directory: terraform
+        run: terraform fmt -check
+
+      - name: Commit changes if any
+        if: ${{ steps.Terraform Fmt.outcome == 'failure' }}
+        run: |
+          git config --global user.email "your-email@example.com"
+          git config --global user.name "Your Name"
+          git add -A
+          git commit -m "Apply terraform fmt"
+          git push
+        working-directory: terraform
+
       - name: Terraform Init
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
         working-directory: terraform
         run: terraform init
 
       - name: Terraform Plan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
         working-directory: terraform
         run: terraform plan
 
       - name: Terraform Apply
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
         working-directory: terraform
         run: terraform apply -auto-approve
