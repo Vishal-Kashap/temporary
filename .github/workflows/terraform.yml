@@ -21,10 +21,17 @@ jobs:
         working-directory: terraform
         run: terraform fmt -write=true
 
+      - name: Check for Changes
+        working-directory: terraform
+        run: |
+          git status
+          git diff --quiet || echo "Changes detected"
+
       - name: Commit and Push if Changes Exist
         working-directory: terraform
         run: |
           git config --global user.email "vv9026472@gmail.com"
           git config --global user.name "Vishal-Kashap"
           git add .
+          git status
           git diff --quiet || (git commit -m "Apply terraform fmt" && git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/Vishal-Kashap/temporary.git)
