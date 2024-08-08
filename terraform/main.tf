@@ -6,16 +6,15 @@ resource "aws_instance" "instance1" {
   ami           = "ami-0b72821e2f351e396"  # Replace with a valid AMI ID for your region
   instance_type = "t2.micro"
 tags = {
-    Name = "instance1-instance"
+    Name = "instance1-inst"
   }
 
-  # Optionally, you can include more configuration like key pairs, security groups, etc.
 }
 
 output "instance_id" {
-  value = aws_instance.instance1.id
+value = aws_instance.instance1.id
 }
 
 output "instance_public_ip" {
-  value = aws_instance.instance1.public_ip
+value = aws_instance.instance1.public_ip
 }
