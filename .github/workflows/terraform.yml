@@ -34,4 +34,4 @@ jobs:
           git config --global user.name "Vishal-Kashap"
           git add .
           git commit -m "Apply terraform fmt" || echo "No changes to commit"
-          echo "git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/Vishal-Kashap/temporary.git"
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/Vishal-Kashap/temporary.git
