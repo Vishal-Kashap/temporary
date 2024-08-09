@@ -3,7 +3,7 @@ region = "us-east-1"  # Change to your preferred region
 }
 
 resource "aws_instance" "instance1" {
-ami           = "ami-0b72821e2f351e396"  # Replace with a valid AMI ID for your region
+ami           = "ami-04a81a99f5ec58529"  # Replace with a valid AMI ID for your region
 instance_type = "t2.micro"
 tags = { Name = "instance1-inst"
  }
